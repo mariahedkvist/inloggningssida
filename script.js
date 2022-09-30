@@ -1,55 +1,50 @@
-/* Deklarera användarnamn och lösenord */
 const checkUsername = "Sara";
 const checkPassword = "qwe123";
 
-/* Hämta HTML-element */
 const loginForm = document.getElementById('login');
 const loggedIn = document.getElementById('loggedIn');
 const sidebarDiv = document.getElementById('sidebar');
 const failedLogin = document.getElementById('failedLogin');
 const btnLogin = document.getElementById('btnLogin');
 
-btnLogin.onclick = function storeLogin() {  /* Knapptryck callar inloggningsfunktion, hämtar anv. input */
+btnLogin.onclick = function storeLogin() {
     let inputUsername = document.getElementById('username').value;
     let inputPassword = document.getElementById('password').value;
-    localStorage.setItem('activeUser', inputUsername);  /* Lagra aktiv användare i localStorage */
+    localStorage.setItem('activeUser', inputUsername);
 
-    if (inputUsername == checkUsername && inputPassword == checkPassword) { /* Kolla angivna uppgifter mot lagrade */
-        activeUserPage(); /* Om rätt uppgifter loggas anv in */
+    if (inputUsername == checkUsername && inputPassword == checkPassword) {
+        activeUserPage();
     }
     else {
-        wrongPasswordAlert(); /* Om fel uppgifter ges felmeddelande */
+        wrongPasswordAlert();
     }
 }
 
-if (localStorage.getItem('activeUser') == 'Sara') { /* Om anv är lagrad i localStorage hålls denne inloggad vid refresh */
+if (localStorage.getItem('activeUser') == 'Sara') {
     activeUserPage();
 }
 
-/* Funktioner */
-function activeUserPage() { /* Sida för inloggad användare */
-    loginForm.style.display = 'none';   /* Gömmer inloggningsformulär */
-    failedLogin.style.display = 'none'; /* Gömmer ev. felmeddelande */
+function activeUserPage() {
+    loginForm.style.display = 'none';
+    failedLogin.style.display = 'none';
 
-    /* Genererar välkomsttext */
     const welcomeText = document.createElement('h3');
     welcomeText.innerHTML = "Välkommen " + localStorage.getItem('activeUser');
     sidebarDiv.appendChild(welcomeText);
 
-    /* Genererar utloggningsknapp */
     const btnLogout = document.createElement('button');
     btnLogout.setAttribute('id', 'btnLogout');
     btnLogout.innerHTML = "Logga ut";
     sidebarDiv.appendChild(btnLogout);
-    btnLogout.onclick = function logout() { /* Vid knapptryck callas utloggningsfunktion */
-        localStorage.clear(); /* localStorage töms */
-        btnLogout.style.display = 'none'; /* Göm utloggningsknapp */
-        welcomeText.style.display = 'none'; /* Göm välkomsttext */
-        loginForm.style.display = 'block'; /* Visa inloggningsformulär */
+    btnLogout.onclick = function logout() {
+        localStorage.clear();
+        btnLogout.style.display = 'none';
+        welcomeText.style.display = 'none';
+        loginForm.style.display = 'block';
     }
 }
 
-function wrongPasswordAlert() { /* Felmeddelande */
+function wrongPasswordAlert() {
     const wrongPasswordMessage = document.createElement('p');
     wrongPasswordMessage.innerHTML = "Fel lösenord, försök igen";
     failedLogin.appendChild(wrongPasswordMessage);
