@@ -1,5 +1,3 @@
-* {}
-
 body {
     display: flex;
     flex-direction: column;
@@ -30,11 +28,11 @@ body {
 .header {
     display: flex;
     background-image: url('images/swimmer.jpg');
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-color: none;
     height: 250px;
-    width:100%;
+    max-width:100%;
 }
 
 h1 {
@@ -51,10 +49,13 @@ h1 {
 #sidebar {
     width: 20%;
     margin: 10px;
+    display:flex;
+    flex-direction: column;
 }
 
-#btnLogin {
-    height: fit-content;
+#btnLogin, #btnLogout {
+    width: fit-content;
+    height:fit-content;
 }
 
 .mainContent {
