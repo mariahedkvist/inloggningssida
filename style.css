@@ -84,21 +84,6 @@ img {
         flex-wrap: wrap;
         justify-content: left;
     }
-
-    .loginForm {
-        display: flex;
-        justify-content: left;
-        align-items:flex-end;
-    }
-
-    .loginForm > *{
-        margin:5px;
-    }
-
-    #sidebar {
-        width: 100%;
-    }
-
 }
 
 @font-face {
